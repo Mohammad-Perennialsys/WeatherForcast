@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="img_content_dec_app_logo">app Logo</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="error_field_required">This field is Required</string>
+    <string name="error_five_char_long">it should at least 5 chars long</string>
+    <string name="error_start_with_number">The username does not start with a number</string>
+    <string name="error_contain_white_space">Password must not contain any Space</string>
+    <string name="error_enter_pass_first">please enter first password to match</string>
+    <string name="error_pass_can_not_be_blank">password can\'t be blank</string>
+    <string name="error_pass_not_matched">password doesn\'t matched</string>
+    <string name="error_must_contain_digit">Password must contain one digit</string>
+    <string name="error_must_contain_capital_letter">Password must contain one capital letter</string>
+    <string name="error_weak_password">Weak Password, it should be at least 6 char long</string>
+    <string name="error_must_contain_spacial_char">Password must contain one special character</string>
+    <string name="error_invalid_email">Invalid Email Address</string>
+
+    <!-- signup  -->
+    <string name="login_logo_image">LoginImage</string>
+    <string name="sign_up_text">Sign Up</string>
+    <string name="username_hint">Username</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="repeat_password_hint">Confirm Password</string>
+    <string name="already_account_login_text">Already have account?</string>
+    <string name="login">Login</string>
+    <string name="create_user_success_message">User Created Successfully!</string>
+
+</resources>
