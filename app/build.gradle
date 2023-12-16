@@ -13,6 +13,7 @@ android {
     Properties properties  = new Properties()
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
     def DB_PASS_PHRASE = properties.getProperty('DB_PassPhrase')
+    def API_KEY = properties.getProperty('API_KEY')
 
     defaultConfig {
         applicationId "com.example.weatherapp"
@@ -22,6 +23,8 @@ android {
         versionName "1.0"
 
         buildConfigField "String", "DB_PASS_PHRASE", "\"${DB_PASS_PHRASE}\""
+        buildConfigField "String","BASE_URL", "\"https://api.openweathermap.org/data/2.5/\""
+        buildConfigField "String", "API_KEY", "\"${API_KEY}\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -84,6 +87,20 @@ dependencies {
     implementation 'com.intuit.ssp:ssp-android:1.1.0'
 
     implementation "net.zetetic:android-database-sqlcipher:4.5.3"
+
+    implementation "com.google.android.gms:play-services-location:21.0.1"
+
+    // networking
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
+
+    //picasso
+    implementation "com.squareup.picasso:picasso:2.8"
+
 }
 kapt {
     correctErrorTypes true

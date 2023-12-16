@@ -37,5 +37,16 @@
     <string name="logout">Logout</string>
     <string name="logout_success">Logout Successfully.</string>
 
+    <!-- Weather Screen-->
+    <string name="today_s_weather">Today\'s Weather</string>
+    <string name="desc_weather_condition_icon">weather condition icon</string>
+    <string name="weather_condition">Sunny</string>
+    <string name="sunrise_image">sunrise image</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="sunset_image">sunset image</string>
+    <string name="temp_in_celsius">%.2f°C</string>
+    <string name="weather_icon_url">https://openweathermap.org/img/wn/%1$s@2x.png</string>
+    <string name="location_city_state">%s , %s</string>
 
 </resources>
