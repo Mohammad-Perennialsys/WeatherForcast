@@ -27,4 +27,15 @@
     <string name="login">Login</string>
     <string name="create_user_success_message">User Created Successfully!</string>
 
+    <!-- login   -->
+    <string name="login_button_text">Login</string>
+    <string name="new_account_signup_text">Don\'t have an account?</string>
+    <string name="error_no_user_with_email">No User Exist with this Email</string>
+    <string name="error_wrong_password">wrong Password</string>
+
+    <!-- main -->
+    <string name="logout">Logout</string>
+    <string name="logout_success">Logout Successfully.</string>
+
+
 </resources>

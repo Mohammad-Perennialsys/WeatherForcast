@@ -89,6 +89,11 @@ class SignupFragment : Fragment() {
                 confirmPassword = confirmPassword
             )
         }
+
+        binding.tvLogin.setOnClickListener {
+            val action = SignupFragmentDirections.actionSignupFragmentToLoginFragment()
+            it.findNavController().navigate(action)
+        }
     }
 
     private fun resetForm() {

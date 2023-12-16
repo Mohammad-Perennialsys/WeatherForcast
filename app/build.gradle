@@ -3,11 +3,16 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
     namespace 'com.example.weatherapp'
     compileSdk 34
+
+    Properties properties  = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    def DB_PASS_PHRASE = properties.getProperty('DB_PassPhrase')
 
     defaultConfig {
         applicationId "com.example.weatherapp"
@@ -15,6 +20,8 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
+
+        buildConfigField "String", "DB_PASS_PHRASE", "\"${DB_PASS_PHRASE}\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -65,6 +72,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+    implementation "net.zetetic:android-database-sqlcipher:4.5.3"
 
     // hilt
     def hilt_version = "2.48"

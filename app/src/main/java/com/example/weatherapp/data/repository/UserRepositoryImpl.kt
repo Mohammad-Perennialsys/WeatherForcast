@@ -29,6 +29,11 @@ class UserRepositoryImpl @Inject constructor(
             apply()
         }
     }
+    override suspend fun getUserByEmail(email: String): UserEntity? {
+        return withContext(dispatcher) {
+            userDao.getUserByEmail(email = email)
+        }
+    }
 
     override suspend fun saveUser(user: UserEntity): Boolean {
         return withContext(dispatcher) {

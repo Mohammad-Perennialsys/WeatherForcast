@@ -7,4 +7,6 @@ interface UserRepository {
     fun setUserId(uid: Int)
     fun clearUserId()
     suspend fun saveUser(user: UserEntity): Boolean
+    suspend fun getUserByEmail(email:String):UserEntity?
+
 }

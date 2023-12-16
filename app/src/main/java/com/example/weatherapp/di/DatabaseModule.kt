@@ -2,6 +2,7 @@ package com.example.weatherapp.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.data.local.dao.UserDao
 import com.example.weatherapp.data.local.database.WeatherDatabase
 import dagger.Module
@@ -20,11 +21,15 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideDatabase(@ApplicationContext context: Context): WeatherDatabase {
-        return Room.databaseBuilder(
+        val builder = Room.databaseBuilder(
             context = context,
             WeatherDatabase::class.java,
             "weather_db"
-        ).build()
+        )
+        val factory =
+            SupportFactory(SQLiteDatabase.getBytes(BuildConfig.DB_PASS_PHRASE.toCharArray()))
+        builder.openHelperFactory(factory)
+        return builder.build()
     }
 
     @Provides
