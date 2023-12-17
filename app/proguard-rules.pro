@@ -19,3 +19,47 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# ========= APP Data Classes ========
+
+-keep class com.example.weatherapp.common.** { *; }
+-keep class com.example.weatherapp.data.model.** { *; }
+-keep class com.example.weatherapp.data.remote.dto.** { *; }
+-keep class com.example.weatherapp.data.local.entity.** { *; }
+-keep class com.example.weatherapp.di.** { *; }
+
+#======== Retrofit2 ==========
+-keepattributes Signature, InnerClasses, EnclosingMethod
+-keepattributes RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
+-keepattributes AnnotationDefault
+-keepclassmembers,allowshrinking,allowobfuscation interface * {
+    @retrofit2.http.* <methods>;
+}
+
+-dontwarn javax.annotation.**
+-dontwarn kotlin.Unit
+-dontwarn retrofit2.KotlinExtensions
+-dontwarn retrofit2.KotlinExtensions$*
+
+-if interface * { @retrofit2.http.* <methods>; }
+-keep,allowobfuscation interface <1>
+
+-if interface * { @retrofit2.http.* <methods>; }
+-keep,allowobfuscation interface * extends <1>
+-keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
+
+-if interface * { @retrofit2.http.* public *** *(...); }
+-keep,allowoptimization,allowshrinking,allowobfuscation class <3>
+-keep,allowobfuscation,allowshrinking class retrofit2.Response
+
+#========== hilt ==============
+-keepnames @dagger.hilt.android.lifecycle.HiltViewModel class * extends androidx.lifecycle.ViewModel
+
+#======== Picasso =========
+### OKIO
+-dontwarn okio.Okio
+-dontwarn okio.DeflaterSink
+
+#======= SQLChipher ==========
+-keep class net.sqlcipher.** { *; }
+-keep class net.sqlcipher.database.* { *; }
