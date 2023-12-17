@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.data.local.dao.UserDao
+import com.example.weatherapp.data.local.dao.WeatherDao
 import com.example.weatherapp.data.local.database.WeatherDatabase
 import dagger.Module
 import dagger.Provides
@@ -36,5 +37,11 @@ object DatabaseModule {
     @Singleton
     fun provideUserDao(database: WeatherDatabase): UserDao {
         return database.getUserDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideWeatherDao(database: WeatherDatabase): WeatherDao {
+        return database.getWeatherDao()
     }
 }

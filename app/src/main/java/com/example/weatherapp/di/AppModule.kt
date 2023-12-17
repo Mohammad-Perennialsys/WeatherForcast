@@ -6,6 +6,7 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import com.example.weatherapp.common.utils.Constants.SHARED_PREFERENCE
 import com.example.weatherapp.data.local.dao.UserDao
+import com.example.weatherapp.data.local.dao.WeatherDao
 import com.example.weatherapp.data.remote.api.ApiService
 import com.example.weatherapp.data.repository.UserRepository
 import com.example.weatherapp.data.repository.UserRepositoryImpl
@@ -62,12 +63,14 @@ object AppModule {
     @Singleton
     @Provides
     fun provideWeatherRepository(
+        dispatcher: CoroutineDispatcher,
         apiService: ApiService,
-        dispatcher: CoroutineDispatcher
+        weatherDao: WeatherDao,
     ): WeatherRepository {
         return WeatherRepositoryImpl(
+            dispatcher = dispatcher,
             apiService = apiService,
-            dispatcher = dispatcher
+            weatherDao = weatherDao,
         )
     }
 

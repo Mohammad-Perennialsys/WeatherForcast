@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.weatherHistory.WeatherHistoryFragment">
 
-    <TextView
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_weather_history"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_weather_history" />
+
+    <LinearLayout
+        android:id="@+id/ll_no_history"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Weather History" />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:src="@drawable/baseline_history_24" />
+
+        <TextView
+            android:id="@+id/tv_no_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_history_not_available"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+    </LinearLayout>
 
 </FrameLayout>

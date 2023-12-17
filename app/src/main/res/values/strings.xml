@@ -1,8 +1,11 @@
 <resources>
+    <!-- common -->
     <string name="app_name">WeatherApp</string>
     <string name="img_content_dec_app_logo">app Logo</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
+    <!-- form validation -->
     <string name="error_field_required">This field is Required</string>
     <string name="error_five_char_long">it should at least 5 chars long</string>
     <string name="error_start_with_number">The username does not start with a number</string>
@@ -48,5 +51,13 @@
     <string name="temp_in_celsius">%.2f°C</string>
     <string name="weather_icon_url">https://openweathermap.org/img/wn/%1$s@2x.png</string>
     <string name="location_city_state">%s , %s</string>
+
+    <!-- WeatherHistory Screen   -->
+    <string name="msg_history_not_available">No History Available</string>
+    <string name="error_failed_delete_history">Failed to Delete History.</string>
+    <string name="success_history_deleted">History Deleted Successfully!</string>
+    <string name="delete_all">Delete All</string>
+    <string name="confirm_clear_history">Confirm History Clear?</string>
+    <string name="erase_history_forever">This will erase your history forever.</string>
 
 </resources>

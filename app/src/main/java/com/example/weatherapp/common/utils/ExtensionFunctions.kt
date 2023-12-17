@@ -47,3 +47,14 @@ fun ImageView.loadFromUrl(url: String) {
         .error(R.mipmap.ic_launcher_foreground)
         .into(this)
 }
+
+/***
+ *
+ * Function to convert TimeStamp to Readable LocalDateTime format
+ * @return String - 01-Jan-2023 12:00 AM/PM
+ *
+ */
+fun Long.timeStampToLocalDateTime(): String {
+    val sdf = SimpleDateFormat("dd-MMM-yyyy hh:mm a", Locale.ENGLISH)
+    return sdf.format(Date(this))
+}

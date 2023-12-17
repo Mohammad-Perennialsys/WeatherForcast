@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.common.utils.NetworkResult
+import com.example.weatherapp.data.mapper.toWeatherEntity
 import com.example.weatherapp.data.model.WeatherInfo
+import com.example.weatherapp.data.repository.UserRepository
 import com.example.weatherapp.data.repository.WeatherRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,16 +17,17 @@ import javax.inject.Inject
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository,
-) : ViewModel() {
+    private val userRepository: UserRepository,
+    ) : ViewModel() {
 
-    private var _currentLocation:Pair<Double,Double>? = null
-    val currentLocation:Pair<Double,Double>? get() = _currentLocation
+    private var _currentLocation: Pair<Double, Double>? = null
+    val currentLocation: Pair<Double, Double>? get() = _currentLocation
     fun setLocation(lat: Double, lon: Double) {
         _currentLocation = Pair(lat, lon)
     }
 
     private var _currentWeather: WeatherInfo? = null
-    val currentWeather:WeatherInfo? get() = _currentWeather
+    val currentWeather: WeatherInfo? get() = _currentWeather
 
     private var isWeatherSaved: Boolean = false
 
@@ -45,6 +48,12 @@ class WeatherViewModel @Inject constructor(
                     is NetworkResult.Success -> {
                         val weather = result.data
                         _weatherUiState.postValue(UiState.Success(data = weather))
+                        weather?.let {
+                            _currentWeather = it
+                            if (!isWeatherSaved) {
+                                saveWeather(it)
+                            }
+                        }
                     }
                     is NetworkResult.Error -> {
                         _weatherUiState.postValue(
@@ -54,5 +63,13 @@ class WeatherViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    private suspend fun saveWeather(weather: WeatherInfo) {
+        val weatherEntity = weather.toWeatherEntity().apply {
+            uid = userRepository.getUserId()
+            timeStamp = weatherRepository.getTimeMillis()
+        }
+        isWeatherSaved = weatherRepository.saveCurrentWeather(weatherEntity)
     }
 }

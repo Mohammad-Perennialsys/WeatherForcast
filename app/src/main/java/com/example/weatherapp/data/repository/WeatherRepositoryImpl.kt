@@ -1,6 +1,9 @@
 package com.example.weatherapp.data.repository
 
+import androidx.lifecycle.LiveData
 import com.example.weatherapp.common.utils.NetworkResult
+import com.example.weatherapp.data.local.dao.WeatherDao
+import com.example.weatherapp.data.local.entity.WeatherEntity
 import com.example.weatherapp.data.mapper.toDomainWeatherDetails
 import com.example.weatherapp.data.model.WeatherInfo
 import com.example.weatherapp.data.remote.api.ApiService
@@ -10,9 +13,10 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
 class WeatherRepositoryImpl(
-    private val apiService: ApiService,
     private val dispatcher: CoroutineDispatcher,
-) : WeatherRepository {
+    private val apiService: ApiService,
+    private val weatherDao: WeatherDao,
+    ) : WeatherRepository {
     override suspend fun fetchCurrentWeather(
         lat: String,
         lon: String,
@@ -45,4 +49,25 @@ class WeatherRepositoryImpl(
             }
         }
     }
+
+    override suspend fun saveCurrentWeather(weather: WeatherEntity): Boolean {
+        return withContext(dispatcher) {
+            val weatherId = weatherDao.insertWeather(weather)
+            weatherId > 0
+        }
+    }
+
+    override fun getWeatherHistory(userId: Int): LiveData<List<WeatherEntity>> {
+        return weatherDao.getWeatherHistory(userId)
+    }
+
+    override suspend fun clearWeatherHistory(userId: Int): Boolean {
+        return withContext(dispatcher) {
+            weatherDao.clearWeather(userId)
+            val weatherCount = weatherDao.getHistoryCount(userId)
+            weatherCount == 0
+        }
+    }
+
+    override fun getTimeMillis(): Long = System.currentTimeMillis()
 }
