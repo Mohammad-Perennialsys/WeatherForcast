@@ -109,6 +109,9 @@ class WeatherViewModelTest {
         val result = weatherViewModel.weatherUiState.getOrAwaitValue()
 
         assertEquals(true, result is UiState.Success)
+
+        val currentWeather = weatherViewModel.currentWeather
+        assertNotNull(currentWeather)
     }
 
     @Test

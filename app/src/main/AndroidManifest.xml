@@ -19,6 +19,7 @@
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,10 +30,12 @@
         <activity
             android:name=".ui.auth.AuthActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.NoActionBar"
             />
         <activity
             android:name=".ui.home.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
     </application>
 
